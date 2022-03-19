@@ -7,7 +7,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/crud_rest_api</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/crud_rest_api_new</property>
         <property name="hibernate.connection.username">user</property>
         <property name="hibernate.connection.password">Aks-662828</property>
 
