@@ -64,7 +64,7 @@ public class EventRepositoryImplementation implements EventRepository {
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Event updatedEvent = session.get(Event.class, event.getId());
-            event.setEventName(event.getEventName());
+            updatedEvent.setEventName(event.getEventName());
             session.update(updatedEvent);
             transaction.commit();
         } catch (Exception ex) {

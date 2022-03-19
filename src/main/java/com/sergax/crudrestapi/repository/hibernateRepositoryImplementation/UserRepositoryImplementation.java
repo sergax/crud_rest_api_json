@@ -57,8 +57,8 @@ public class UserRepositoryImplementation implements UserRepository {
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             User updatedUser = session.get(User.class, user.getId());
-            user.setUserName(user.getUserName());
-            user.setPassword(user.getPassword());
+            updatedUser.setUserName(user.getUserName());
+            updatedUser.setPassword(user.getPassword());
             session.update(updatedUser);
             transaction.commit();
         } catch (Exception ex) {
