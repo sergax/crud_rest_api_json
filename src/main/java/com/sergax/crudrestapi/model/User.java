@@ -2,13 +2,15 @@ package com.sergax.crudrestapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
@@ -19,9 +21,9 @@ public class User {
 
     @Column(name = "user_name")
     private String userName;
-
-    @Column(name = "password")
-    private String password;
+//
+//    @Column(name = "password")
+//    private String password;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user")
