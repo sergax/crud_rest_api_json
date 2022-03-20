@@ -7,7 +7,7 @@ import com.sergax.crudrestapi.service.EventService;
 import java.util.List;
 
 public class EventServiceImplementation implements EventService {
-    private EventRepositoryImplementation eventRepositoryImplementation =
+    private final EventRepositoryImplementation eventRepositoryImplementation =
             new EventRepositoryImplementation();
 
     @Override

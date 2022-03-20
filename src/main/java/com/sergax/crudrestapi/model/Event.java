@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "event")
@@ -28,4 +27,17 @@ public class Event {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
+
+    public Event(String eventName, User user, File file) {
+        this.eventName = eventName;
+        this.user = user;
+        this.file = file;
+    }
+
+    public Event(Long id, String eventName, User user, File file) {
+        this.id = id;
+        this.eventName = eventName;
+        this.user = user;
+        this.file = file;
+    }
 }

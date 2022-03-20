@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", urlPatterns = "/user")
+@WebServlet("/user")
 public class UserServlet extends HttpServlet {
     private final UserServiceImplementation userServiceImplementation =
             new UserServiceImplementation();
@@ -31,8 +31,8 @@ public class UserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newName = request.getParameter("user_name");
-//        String newPassword = request.getParameter("password");
-        User newUser = new User(null, newName, new ArrayList<>());
+        String newPassword = request.getParameter("password");
+        User newUser = new User(newName, newPassword);
         userServiceImplementation.create(newUser);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -45,14 +45,12 @@ public class UserServlet extends HttpServlet {
         Long id = Long.valueOf(request.getParameter("id"));
         String updatedName = request.getParameter("user_name");
         String updatedPassword = request.getParameter("password");
-        User updatedUser = new User(id, updatedName, new ArrayList<>());
+        User updatedUser = new User(id, updatedName, updatedPassword);
         userServiceImplementation.update(updatedUser);
-        response.sendRedirect("/user");
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.valueOf(request.getParameter("id"));
         userServiceImplementation.delete(id);
-        response.sendRedirect("/user");
     }
 }

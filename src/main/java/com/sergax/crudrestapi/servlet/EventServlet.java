@@ -36,7 +36,7 @@ public class EventServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newName = request.getParameter("event_name");
-        Event newEvent = new Event(null, newName, new User(), new File());
+        Event newEvent = new Event(newName, new User(), new File());
         eventServiceImplementation.create(newEvent);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");

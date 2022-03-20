@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,8 @@ public class FileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newFileName = request.getParameter("file_name");
-        File newFile = new File(null, newFileName, new Date(), new ArrayList<>());
+        LocalDate date = LocalDate.now();
+        File newFile = new File(newFileName, date);
         fileServiceImplementation.create(newFile);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -40,7 +42,8 @@ public class FileServlet extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.valueOf(request.getParameter("id"));
         String updatedName = request.getParameter("file_name");
-        File updatedFile = new File(id, updatedName,new Date(), new ArrayList<>());
+        LocalDate date = LocalDate.now();
+        File updatedFile = new File(id, updatedName, date);
         fileServiceImplementation.update(updatedFile);
     }
 
