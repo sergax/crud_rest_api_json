@@ -7,7 +7,7 @@ import com.sergax.crudrestapi.service.FileService;
 import java.util.List;
 
 public class FileServiceImplementation implements FileService {
-    private FileRepositoryImplementation fileRepositoryImplementation =
+    private final FileRepositoryImplementation fileRepositoryImplementation =
             new FileRepositoryImplementation();
 
     @Override

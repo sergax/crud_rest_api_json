@@ -7,7 +7,7 @@ import com.sergax.crudrestapi.service.UserService;
 import java.util.List;
 
 public class UserServiceImplementation implements UserService {
-    private UserRepositoryImplementation userRepositoryImplementation =
+    private final UserRepositoryImplementation userRepositoryImplementation =
             new UserRepositoryImplementation();
 
     @Override

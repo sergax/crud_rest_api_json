@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "file")
@@ -30,11 +30,21 @@ public class File {
     @CreationTimestamp
     @Column(name = "created")
     @EqualsAndHashCode.Exclude
-    private Date created;
+    private LocalDate created;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "file")
     @JoinColumn(name = "file_id")
     private List<Event> eventList;
 
+    public File(String fileName, LocalDate created) {
+        this.fileName = fileName;
+        this.created = LocalDate.now();
+    }
+
+    public File(Long id, String fileName, LocalDate created) {
+        this.id = id;
+        this.fileName = fileName;
+        this.created = LocalDate.now();
+    }
 }
