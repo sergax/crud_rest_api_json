@@ -14,11 +14,10 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
-    private final UserServiceImplementation userServiceImplementation =
+    private UserServiceImplementation userServiceImplementation =
             new UserServiceImplementation();
-    private final Gson gson = new Gson();
+    private Gson gson = new Gson();
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("UTF-8");
@@ -33,7 +32,6 @@ public class UserServlet extends HttpServlet {
 //        response.sendRedirect("/user");
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newName = request.getParameter("newName");
         String newPassword = request.getParameter("newPassword");
@@ -47,7 +45,6 @@ public class UserServlet extends HttpServlet {
 //        out.flush();
     }
 
-    @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.valueOf(request.getParameter("id"));
         String updatedName = request.getParameter("updatedName");
@@ -58,7 +55,6 @@ public class UserServlet extends HttpServlet {
 //        out.write(gson.toJson(updatedUser.toString()));
     }
 
-    @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.valueOf(request.getParameter("id"));
         userServiceImplementation.delete(id);
