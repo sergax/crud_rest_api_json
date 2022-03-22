@@ -16,12 +16,12 @@ public class UserRepositoryImplementation implements UserRepository {
 
     @Override
     public List<User> getAll() {
-        List<User> userList = new ArrayList<>();
+        List<User> userList = new ArrayList();
 
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+//            transaction = session.beginTransaction();
             userList = session.createQuery("FROM User").getResultList();
-            transaction.commit();
+//            transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -58,7 +58,6 @@ public class UserRepositoryImplementation implements UserRepository {
             transaction = session.beginTransaction();
             User updatedUser = session.get(User.class, user.getId());
             updatedUser.setUserName(user.getUserName());
-            updatedUser.setPassword(user.getPassword());
             session.update(updatedUser);
             transaction.commit();
         } catch (Exception ex) {

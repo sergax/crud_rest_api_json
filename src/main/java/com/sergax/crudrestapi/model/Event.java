@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "event")
 public class Event {
@@ -28,16 +29,7 @@ public class Event {
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
 
-    public Event(String eventName, User user, File file) {
+    public Event(String eventName) {
         this.eventName = eventName;
-        this.user = user;
-        this.file = file;
-    }
-
-    public Event(Long id, String eventName, User user, File file) {
-        this.id = id;
-        this.eventName = eventName;
-        this.user = user;
-        this.file = file;
     }
 }

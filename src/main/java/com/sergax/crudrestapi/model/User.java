@@ -8,8 +8,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Entity
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "user")
 public class User {
 
@@ -21,22 +22,16 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "password")
-    private String password;
-
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
             mappedBy = "user")
-    @JoinColumn(name = "user_id")
     private List<Event> eventList;
 
-    public User(String userName, String password) {
+    public User(String userName) {
         this.userName = userName;
-        this.password = password;
     }
 
-    public User(Long id, String userName, String password) {
+    public User(Long id, String userName) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
     }
 }

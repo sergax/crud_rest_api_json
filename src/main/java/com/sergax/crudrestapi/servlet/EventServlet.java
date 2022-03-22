@@ -26,17 +26,23 @@ public class EventServlet extends HttpServlet {
             new FileServiceImplementation();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Event> eventList = eventServiceImplementation.getAll();
+
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        out.print(eventList);
+        List<Event> eventList = eventServiceImplementation.getAll();
+        for (Event e: eventList
+             ) {
+            out.print(e);
+        }
+
         out.flush();
+        response.sendRedirect("/file");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newName = request.getParameter("event_name");
-        Event newEvent = new Event(newName, new User(), new File());
+        Event newEvent = new Event(newName);
         eventServiceImplementation.create(newEvent);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
